@@ -1,31 +1,29 @@
+let arr = ['Tajmahal', 'Victoria Memorial', 'The Virupaksha Temple'];
+let updatedList = arr.map((element) => {
+	// ["a", "some", "one"]
+	let words = element.split(" ") ;
+	let updatedString = words.reduce((prev, current, index) => {
+		if(current != "The" && current != "an" && current != "a"){
+			return prev + " " + current ;
+		}
+		return prev ;
+	}, "")
 
-const bandNames = ['The Beatles', 'Led Zeppelin', 'Aerosmith', 'Pink Floyd', 'The Rolling Stones', 'Nirvana', 'A-ha', 'The Who'];
-
-const sortedBandNames = bandNames.sort(function(a, b) {
-// Remove articles from both band names
-const regex = /^(a |an |the )/i;
-const bandA = a.replace(regex, '').trim();
-const bandB = b.replace(regex, '').trim();
-
-// Compare band names
-if (bandA < bandB) {
-return -1;
-} else if (bandA > bandB) {
-return 1;
-} else {
-return 0;
-}
+	return updatedString ;
+}) ;
+let mp = {} ; // {"some one" : "a some one"}
+updatedList.forEach( (element, index) => {
+	mp[element] = arr[index] ;
 });
+updatedList.sort(); 
 
-// Get the unordered list element by ID
-const bandList = document.getElementById('band');
+let finalAns = updatedList.map((element) => {
+    return mp[element] ;
+})
 
-// Add each sorted band name to the list as a list item
-sortedBandNames.forEach(function(band) {
-const li = document.createElement('li');
-li.textContent = band;
-bandList.appendChild(li);
-});
+console.log(finalAns); 
+
+
 
 
 
